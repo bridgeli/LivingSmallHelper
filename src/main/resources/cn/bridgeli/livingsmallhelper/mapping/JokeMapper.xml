@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.bridgeli.livingsmallhelper.mapper.JokeMapper" >
+    <resultMap type="Joke" id="baseJokeMap">
+        <id column="id" property="id" />
+        <id column="content" property="content" />
+    </resultMap>
+
+    <sql id="selectColumn" >
+        id, content
+    </sql>
+
+    <select id="getJoke" resultMap="baseJokeMap">
+        SELECT 
+            <include refid="selectColumn" ></include>
+        FROM
+            joke
+        ORDER BY
+            rand()
+        DESC
+        LIMIT 0,1
+    </select>
+
+</mapper>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.bridgeli.livingsmallhelper.mapper.UserLocationMapper" >
+    <resultMap type="UserLocation" id="baseUserLocationMap">
+        <id column="id" property="id" />
+        <result column="open_id" property="open_id" />
+        <result column="lng" property="lng"/>
+        <result column="lat" property="lat" />
+        <result column="bd09_lng" property="bd09_lng" />
+        <result column="bd09_lat" property="bd09_lat" />
+    </resultMap>
+
+    <sql id="selectColumn" >
+        id, open_id, lng, lat, bd09_lng, bd09_lat
+    </sql>
+
+    <insert id="add" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        INSERT INTO 
+            user_location (
+                open_id,
+                lng,
+                lat,
+                bd09_lng,
+                bd09_lat
+            ) VALUES (
+                #{open_id},
+                #{lng},
+                #{lat},
+                #{bd09_lng},
+                #{bd09_lat}
+            )
+    </insert>
+
+    <select id="getLastLocation" resultMap="baseUserLocationMap">
+        SELECT 
+            <include refid="selectColumn" ></include>
+        FROM
+            user_location
+        WHERE
+            open_id = #{open_id}
+        ORDER BY
+            id
+        DESC
+        LIMIT 0,1
+    </select>
+
+</mapper>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.bridgeli.livingsmallhelper.mapper.GameRoundMapper" >
+    <resultMap type="GameRound" id="baseGameRoundMap">
+        <id column="id" property="id" />
+        <result column="game_id" property="gameId" />
+        <result column="open_id" property="openId"/>
+        <result column="quess_number" property="quessNo" />
+        <result column="quess_time" property="quessTime" />
+        <result column="quess_result" property="quessResult" />
+    </resultMap>
+
+    <sql id="selectColumn" >
+        id, open_id, game_id, quess_number, quess_time, quess_result
+    </sql>
+
+    <insert id="save" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        INSERT INTO 
+            game_round (
+                open_id,
+                game_id,
+                quess_number,
+                quess_time,
+                quess_result
+            ) VALUES (
+                #{openId},
+                #{gameId},
+                #{quessNo},
+                #{quessTime},
+                #{quessResult}
+            )
+    </insert>
+
+    <select id="queryByOpenId" resultMap="baseGameRoundMap">
+        SELECT 
+            <include refid="selectColumn" ></include>
+        FROM
+            game_round
+        WHERE
+            game_id = #{gameId}
+        ORDER BY
+            id
+        ASC
+    </select>
+
+</mapper>

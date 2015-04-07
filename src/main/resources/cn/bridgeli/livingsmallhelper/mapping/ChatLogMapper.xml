@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.bridgeli.livingsmallhelper.mapper.ChatLogMapper" >
+    <resultMap type="ChatLog" id="baseChatLogMap">
+        <id column="id" property="id" />
+        <id column="open_id" property="fromUserName" />
+        <id column="create_time" property="createTime" />
+        <id column="req_msg" property="question" />
+        <id column="resp_msg" property="answer" />
+        <id column="chat_category" property="chatCategory" />
+    </resultMap>
+
+    <sql id="selectColumn" >
+        id, open_id, create_time, req_msg, resp_msg, chat_category
+    </sql>
+
+    <insert id="addChatLog" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        INSERT INTO 
+            chat_log (
+                open_id,
+                create_time,
+                req_msg,
+                resp_msg,
+                chat_category
+            ) VALUES (
+                #{fromUserName},
+                #{createTime},
+                #{question},
+                #{answer},
+                #{chatCategory}
+            )
+    </insert>
+
+    <select id="getLastCategory" resultType="int">
+        SELECT 
+            <include refid="selectColumn" ></include>
+        FROM
+            chat_log
+        WHERE
+            open_id = #{fromUserName}
+        ORDER BY
+            id
+        DESC
+        LIMIT 0,1
+    </select>
+
+</mapper>

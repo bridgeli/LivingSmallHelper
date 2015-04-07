@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.bridgeli.livingsmallhelper.mapper.GameMapper" >
+    <resultMap type="Game" id="baseGameMap">
+        <id column="id" property="id" />
+        <result column="open_id" property="openId" />
+        <result column="answer" property="gameAnswer"/>
+        <result column="create_time" property="createTime" />
+        <result column="status" property="gameStatus" />
+        <result column="finish_time" property="finishTime" />
+    </resultMap>
+
+    <sql id="selectColumn" >
+        id, open_id, answer, create_time, status, finish_time
+    </sql>
+
+    <insert id="save" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        INSERT INTO 
+            game (
+                open_id,
+                answer,
+                create_time,
+                status,
+                finish_time
+            ) VALUES (
+                #{openId},
+                #{gameAnswer},
+                #{createTime},
+                #{gameStatus},
+                #{finishTime}
+            )
+    </insert>
+
+    <select id="getScoreByOpenId" resultType="java.util.Map">
+        SELECT 
+            status,
+            count(*)
+        FROM
+            game
+        WHERE
+            open_id = #{openId}
+        GROUP BY
+            status
+        ORDER BY
+            status
+        DESC
+    </select>
+
+    <select id="getLastGame" resultMap="baseGameMap">
+        SELECT 
+            <include refid="selectColumn" ></include>
+        FROM
+            game
+        WHERE
+            open_id = #{openId}
+        ORDER BY
+            id
+        DESC
+        LIMIT 0,1
+    </select>
+
+    <update id="update">
+        UPDATE
+            game
+        SET
+            status = #{gameStatus},
+            finish_time = #{finishTime}
+        WHERE
+            id = #{id}
+    </update>
+
+</mapper>
