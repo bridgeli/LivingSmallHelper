@@ -76,7 +76,7 @@ public class MenuService {
         ViewButton btn14 = new ViewButton();
         btn14.setName("快递查询");
         btn14.setType("view");
-        btn14.setUrl("http://www.livingsmallhelper.sinaapp.com/wuliu.html");
+        btn14.setUrl("http://m.kuaidi100.com");
 
         CommonButton btn15 = new CommonButton();
         btn15.setName("电影排行榜");
@@ -109,7 +109,7 @@ public class MenuService {
         btn25.setKey("25");
 
         CommonButton btn31 = new CommonButton();
-        btn31.setName("Q友圈");
+        btn31.setName("老友圈");
         btn31.setType("click");
         btn31.setKey("31");
 
