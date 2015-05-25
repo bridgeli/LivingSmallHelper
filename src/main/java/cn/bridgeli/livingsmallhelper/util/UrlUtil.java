@@ -38,6 +38,8 @@ public class UrlUtil {
         InputStreamReader inputStreamReader = null;
         BufferedReader bufferedReader = null;
 
+        System.setProperty("https.protocols", "TLSv1");
+
         try {
             TrustManager[] tm = { new MyX509TrustManagerUtil() };
             SSLContext sslContext = SSLContext.getInstance("SSL", "SunJSSE");
