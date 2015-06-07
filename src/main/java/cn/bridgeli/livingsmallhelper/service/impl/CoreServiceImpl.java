@@ -130,7 +130,7 @@ public class CoreServiceImpl implements CoreService {
         } else if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_EVENT)) {
             String eventType = requestMap.get("Event");
             if (eventType.equals(MessageUtil.EVENT_TYPE_SUBSCRIBE)) {
-                respContent = "亲，谢谢您的关注！\n\n生活小助手能为您提供天气、公家、歌曲、聊天、笑话等服务；还能通过自然语言交互方式提供周边搜索（如厕所、ATM、KTV等，精确到米），是您生活娱乐的好帮手！\n\n快快点击菜单体验吧";
+                respContent = "亲，谢谢您的关注！\n\n生活小助手能为您提供天气、公家、歌曲、聊天、笑话等服务；还能通过“自然语言”、“语音”等交互方式提供周边搜索（如厕所、ATM、代售点、超市、药店、美食、网吧、电影院等等，精确到米），是您生活娱乐的好帮手！\n\n快快点击菜单体验吧";
             } else if (eventType.equals(MessageUtil.EVENT_TYPE_UNSUBSCRIBE)) {
 
             } else if (eventType.equals(MessageUtil.EVENT_TYPE_CLICK)) {
