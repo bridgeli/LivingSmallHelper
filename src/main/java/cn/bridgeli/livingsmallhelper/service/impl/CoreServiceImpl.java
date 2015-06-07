@@ -106,7 +106,27 @@ public class CoreServiceImpl implements CoreService {
         } else if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_LINK)) {
             respContent = "您发送的是链接消息！";
         } else if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_VOICE)) {
-            respContent = "您发送的是音频消息！";
+            String content = requestMap.get("Recognition");
+
+            if (content.startsWith("歌曲")) {
+                content = content.substring(2);
+                if (null == content || "".equals(content)) {
+                    respContent = WeiXinUtil.getSongUsage();
+                } else {
+                    return baiduMusicService.searchMusic(content, fromUserName, toUserName, textMessage);
+                }
+            } else if (content.startsWith("附近")) {
+                content = content.substring(2);
+                if (null == content || "".equals(content)) {
+                    respContent = WeiXinUtil.getNearSearchUsage();
+                } else {
+                    return nearSearchService.searchPlace(content, fromUserName, toUserName, textMessage);
+                }
+            }
+            if ("".equals(respContent)) {
+                respContent = textService.handleText(content, fromUserName);
+            }
+
         } else if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_EVENT)) {
             String eventType = requestMap.get("Event");
             if (eventType.equals(MessageUtil.EVENT_TYPE_SUBSCRIBE)) {
