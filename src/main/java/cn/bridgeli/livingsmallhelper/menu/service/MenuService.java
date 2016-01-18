@@ -38,9 +38,9 @@ public class MenuService {
 
     public static void main(String[] args) {
         // 第三方用户唯一凭证
-        String appId = "wx5c968bbc8c69d322";
+        String appId = "XXXXXXXXXXXXXXXXXX";
         // 第三方用户唯一凭证密钥
-        String appSecret = "c9f495c7bdf4165eb1b5885b9d0655ca";
+        String appSecret = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
 
         // 调用接口获取access_token
         String accessToken = AccessTokenService.getAccessToken(appId, appSecret);
@@ -131,7 +131,7 @@ public class MenuService {
         ViewButton btn35 = new ViewButton();
         btn35.setName("关于作者");
         btn35.setType("view");
-        btn35.setUrl("http://www.bridgeli.cn/%E5%85%B3%E4%BA%8E%E4%BD%9C%E8%80%85");
+        btn35.setUrl("http://www.bridgeli.cn/%E5%85%B3%E4%BA%8E%E5%8D%9A%E4%B8%BB");
 
         ComplexButton mainBtn1 = new ComplexButton();
         mainBtn1.setName("生活助手");
