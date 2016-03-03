@@ -131,7 +131,7 @@ public class MenuService {
         ViewButton btn35 = new ViewButton();
         btn35.setName("关于作者");
         btn35.setType("view");
-        btn35.setUrl("http://www.bridgeli.cn/%E5%85%B3%E4%BA%8E%E5%8D%9A%E4%B8%BB");
+        btn35.setUrl("http://www.bridgeli.cn/about");
 
         ComplexButton mainBtn1 = new ComplexButton();
         mainBtn1.setName("生活助手");
